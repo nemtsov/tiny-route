@@ -8,16 +8,17 @@ Routes on a regular expression and calls a handler.
 # example
 
 ``` js
+var http  = require('http')
 var Stack = require('stack')
-var http  = require('stack')
+var route = require('tiny-route')
 
-http.creatServer(Stack(
-  route(/\/users/(\w+)/, function (req, res, next) {
+http.createServer(Stack(
+  route(/\/users\/(\w+)/, function (req, res, next) {
     console.log('accessed user', req.params)
-    req.end('hello', req.params[0])
+    res.end('hello ' + req.params[0])
     //and so on.
   })
-))
+)).listen(3000)
 ```
 
 ## License
